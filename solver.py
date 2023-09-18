@@ -4,23 +4,30 @@ import datetime
 
 import logging
 
-logging.basicConfig(filename="v2.log",level=logging.DEBUG,format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(filename="v3.log",level=logging.DEBUG,format='%(asctime)s - %(levelname)s - %(message)s')
+
+
 
 def possibility(x:int,y:int,arr:list):
     _x=(x//3)*3
     _y=(y//3)*3
-    complete_set = set(range(0,10))
-
-    remove_set=set(
-        arr[y]+#横
-        [i[x] for i in arr]+#縦
-        #四角範囲
-        arr[_y] [_x:_x+3]+
-        arr[_y+1][_x:_x+3]+
-        arr[_y+2][_x:_x+3]
-    )
-    return complete_set-remove_set
-
+    rs=arr[y]#横
+    cs=[i[x] for i in arr]#縦
+    #3x3ブロック
+    a= arr[_y] [_x:_x+3]
+    b= arr[_y+1][_x:_x+3]
+    c= arr[_y+2][_x:_x+3]
+    rlist=[]
+    for i in range(10):
+        if not any([
+                i in rs,
+                i in cs,
+                i in a,
+                i in b,
+                i in c
+            ]):
+            rlist.append(i)
+    return rlist
 
 def find_zero(arr)->tuple[int,int]:
     # 最も若いzeroを探す
@@ -34,16 +41,13 @@ def solver(arr:list[list[int]])->list[list[int]]:
         # 0がまだ残っている
         # 0の残る場所を探す
         x,y = find_zero(arr)
-        plist=possibility(x,y,arr)
-        if len(plist)==0:
+        if len(plist:=possibility(x,y,arr))==0:
             return False
         for i in plist:
             new_arr = copy.deepcopy(arr)
             new_arr[y][x]=i
             if (s:=solver(new_arr)):
                 return s
-            else:
-                pass
     else:
         # 0がもう残っていない
         return arr
@@ -59,7 +63,7 @@ if __name__=="__main__":
         [0,0,3,2,0,0,0,8,0],
         [0,6,0,5,0,0,0,0,9],
         [0,0,4,0,0,0,0,3,0],
-        [0,0,0,0,0,9,7,0,0]
+        [0,0,0,0,0,9,7,0,0],
     ]
     t1=datetime.datetime.now()
     pprint(
