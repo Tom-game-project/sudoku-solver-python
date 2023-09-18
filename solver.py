@@ -1,5 +1,10 @@
 from pprint import pprint
 import copy
+import datetime
+
+import logging
+
+logging.basicConfig(filename="v1.log",level=logging.DEBUG,format='%(asctime)s - %(levelname)s - %(message)s')
 
 def possibility(x:int,y:int,arr:list):
     _x=(x//3)*3
@@ -56,6 +61,10 @@ if __name__=="__main__":
         [0,0,4,0,0,0,0,3,0],
         [0,0,0,0,0,9,7,0,0]
     ]
+    t1=datetime.datetime.now()
     pprint(
         solver(arr)
     )
+    t2=datetime.datetime.now()
+
+    logging.debug(t2-t1)
