@@ -4,7 +4,7 @@ import datetime
 
 import logging
 
-logging.basicConfig(filename="v1.log",level=logging.DEBUG,format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(filename="v2.log",level=logging.DEBUG,format='%(asctime)s - %(levelname)s - %(message)s')
 
 def possibility(x:int,y:int,arr:list):
     _x=(x//3)*3
@@ -30,7 +30,7 @@ def find_zero(arr)->tuple[int,int]:
                 return x,y
 
 def solver(arr:list[list[int]])->list[list[int]]:
-    if True in [0 in i for i in arr]:
+    if any([0 in i for i in arr]):
         # 0がまだ残っている
         # 0の残る場所を探す
         x,y = find_zero(arr)
