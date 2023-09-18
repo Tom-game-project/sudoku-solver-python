@@ -17,16 +17,16 @@ def possibility(x:int,y:int,arr:list):
     a= arr[_y] [_x:_x+3]
     b= arr[_y+1][_x:_x+3]
     c= arr[_y+2][_x:_x+3]
-    rlist=[]
-    for i in range(10):
+    rlist=[
+        i for i in range(10)
         if not any([
-                i in rs,
-                i in cs,
-                i in a,
-                i in b,
-                i in c
-            ]):
-            rlist.append(i)
+            i in rs,
+            i in cs,
+            i in a,
+            i in b,
+            i in c
+    ])]
+    
     return rlist
 
 def find_zero(arr)->tuple[int,int]:
