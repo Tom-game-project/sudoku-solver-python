@@ -3,8 +3,9 @@ import copy
 import datetime
 
 import logging
+import os
 
-logging.basicConfig(filename="v3.log",level=logging.DEBUG,format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(filename=os.path.join("log","t1.log"),level=logging.DEBUG,format='%(asctime)s - %(levelname)s - %(message)s')
 
 
 
