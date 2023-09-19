@@ -3,8 +3,9 @@ import copy
 import datetime
 
 import logging
+import os
 
-logging.basicConfig(filename="v3.log",level=logging.DEBUG,format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(filename=os.path.join("log","t1.log"),level=logging.DEBUG,format='%(asctime)s - %(levelname)s - %(message)s')
 
 
 
@@ -36,6 +37,7 @@ def find_zero(arr)->tuple[int,int]:
             if d==0:
                 return x,y
 
+
 def solver(arr:list[list[int]])->list[list[int]]:
     if any([0 in i for i in arr]):
         # 0がまだ残っている
@@ -55,15 +57,15 @@ def solver(arr:list[list[int]])->list[list[int]]:
 
 if __name__=="__main__":
     arr = [
-        [0,0,5,3,0,0,0,0,0],
-        [8,0,0,0,0,0,0,2,0],
-        [0,7,0,0,1,0,5,0,0],
-        [4,0,0,0,0,5,3,0,0],
-        [0,1,0,0,7,0,0,0,6],
-        [0,0,3,2,0,0,0,8,0],
-        [0,6,0,5,0,0,0,0,9],
-        [0,0,4,0,0,0,0,3,0],
-        [0,0,0,0,0,9,7,0,0],
+        [0,7,0,0,0,1,0,0,4],
+        [0,6,0,0,0,0,0,2,0],
+        [2,0,1,0,5,0,0,0,3],
+        [0,2,0,0,0,0,0,0,0],
+        [8,0,4,0,0,6,0,3,0],
+        [0,0,0,9,0,0,0,0,5],
+        [0,0,0,0,6,0,4,0,0],
+        [1,0,3,0,0,4,0,8,0],
+        [0,0,7,0,0,0,0,0,0]
     ]
     t1=datetime.datetime.now()
     pprint(
@@ -71,4 +73,5 @@ if __name__=="__main__":
     )
     t2=datetime.datetime.now()
 
-    logging.debug(t2-t1)
+    #logging.debug(t2-t1)
+    print(t2-t1)
