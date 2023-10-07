@@ -2,6 +2,7 @@ from pprint import pprint
 import copy
 import datetime
 
+import rec
 import logging
 import os
 
@@ -50,6 +51,7 @@ def solver(arr:list[list[int]])->list[list[int]]:
             new_arr[y][x]=i
             if (s:=solver(new_arr)):
                 return s
+        raise BaseException("問題に矛盾があります")
     else:
         # 0がもう残っていない
         return arr
